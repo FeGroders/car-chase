@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://blesqry4pa7cb"
+path="res://.godot/imported/trash_A.obj-78b8d7770a8982bca444b3b9a3994601.mesh"
+
+[deps]
+
+files=["res://.godot/imported/trash_A.obj-78b8d7770a8982bca444b3b9a3994601.mesh"]
+
+source_file="res://assets/obj/trash_A.obj"
+dest_files=["res://.godot/imported/trash_A.obj-78b8d7770a8982bca444b3b9a3994601.mesh", "res://.godot/imported/trash_A.obj-78b8d7770a8982bca444b3b9a3994601.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

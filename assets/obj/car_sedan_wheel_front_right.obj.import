@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bav8j1ik8kdi2"
+path="res://.godot/imported/car_sedan_wheel_front_right.obj-4acf01372df6d37602cc5f22709018ab.mesh"
+
+[deps]
+
+files=["res://.godot/imported/car_sedan_wheel_front_right.obj-4acf01372df6d37602cc5f22709018ab.mesh"]
+
+source_file="res://assets/obj/car_sedan_wheel_front_right.obj"
+dest_files=["res://.godot/imported/car_sedan_wheel_front_right.obj-4acf01372df6d37602cc5f22709018ab.mesh", "res://.godot/imported/car_sedan_wheel_front_right.obj-4acf01372df6d37602cc5f22709018ab.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

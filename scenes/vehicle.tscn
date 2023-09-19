@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://brk7jnyygfyua"]
+
+[ext_resource type="Script" path="res://scripts/vehicle.gd" id="1_uagyv"]
+[ext_resource type="ArrayMesh" uid="uid://b633232svgjbg" path="res://assets/obj/car_police.obj" id="2_5bal8"]
+[ext_resource type="ArrayMesh" uid="uid://c6uykuuocxyew" path="res://assets/obj/car_police_wheel_front_left.obj" id="3_5r5hi"]
+[ext_resource type="ArrayMesh" uid="uid://clxninexqlp3i" path="res://assets/obj/car_police_wheel_front_right.obj" id="4_wnlpd"]
+[ext_resource type="ArrayMesh" uid="uid://basxli8hvmgms" path="res://assets/obj/car_police_wheel_rear_right.obj" id="5_vox76"]
+[ext_resource type="ArrayMesh" uid="uid://ctaapo0jfleth" path="res://assets/obj/car_police_wheel_rear_left.obj" id="6_rd8t3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uyvb6"]
+size = Vector3(0.414968, 0.409959, 1)
+
+[node name="vehicle" type="VehicleBody3D"]
+script = ExtResource("1_uagyv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146384, 0)
+shape = SubResource("BoxShape3D_uyvb6")
+
+[node name="car_body" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_5bal8")
+
+[node name="front_left_wheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, 0.171127, 0.010912, 0.248761)
+use_as_steering = true
+
+[node name="CarPoliceWheelFrontLeft" type="MeshInstance3D" parent="front_left_wheel"]
+transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, -1.10274, -0.0703166, -1.603)
+mesh = ExtResource("3_5r5hi")
+skeleton = NodePath("../..")
+
+[node name="front_right_wheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, -0.177312, 0.010912, 0.248761)
+use_as_steering = true
+
+[node name="CarPoliceWheelFrontRight" type="MeshInstance3D" parent="front_right_wheel"]
+transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, 1.14384, -0.0703166, -1.58462)
+mesh = ExtResource("4_wnlpd")
+skeleton = NodePath("../..")
+
+[node name="rear_right_wheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, -0.177312, 0.010912, -0.257636)
+use_as_traction = true
+
+[node name="CarPoliceWheelRearRight" type="MeshInstance3D" parent="rear_right_wheel"]
+transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, 1.14384, -0.0703166, 1.67858)
+mesh = ExtResource("5_vox76")
+skeleton = NodePath("../..")
+
+[node name="rear_left_wheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, 0.171127, 0.010912, -0.255458)
+use_as_traction = true
+
+[node name="CarPoliceWheelRearLeft" type="MeshInstance3D" parent="rear_left_wheel"]
+transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, -1.10148, -0.0703166, 1.66454)
+mesh = ExtResource("6_rd8t3")
+skeleton = NodePath("../..")
+
+[node name="camera_mount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15905, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
+transform = Transform3D(-1, 1.87728e-08, -8.53834e-08, 0, 0.976672, 0.214735, 8.74228e-08, 0.214735, -0.976672, 0, 0.445639, -1.38726)

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://wmdh3cackxq3"
+path="res://.godot/imported/building_B_withoutBase.obj-0751ee02f16ee7dc5d56e340c2b3eb1f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_B_withoutBase.obj-0751ee02f16ee7dc5d56e340c2b3eb1f.mesh"]
+
+source_file="res://assets/obj/building_B_withoutBase.obj"
+dest_files=["res://.godot/imported/building_B_withoutBase.obj-0751ee02f16ee7dc5d56e340c2b3eb1f.mesh", "res://.godot/imported/building_B_withoutBase.obj-0751ee02f16ee7dc5d56e340c2b3eb1f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

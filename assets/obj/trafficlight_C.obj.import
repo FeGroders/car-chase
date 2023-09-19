@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dprng76lsnanc"
+path="res://.godot/imported/trafficlight_C.obj-3278a37fb7874f20df3d4255e29599e1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/trafficlight_C.obj-3278a37fb7874f20df3d4255e29599e1.mesh"]
+
+source_file="res://assets/obj/trafficlight_C.obj"
+dest_files=["res://.godot/imported/trafficlight_C.obj-3278a37fb7874f20df3d4255e29599e1.mesh", "res://.godot/imported/trafficlight_C.obj-3278a37fb7874f20df3d4255e29599e1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

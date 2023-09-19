@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://xddv2s06lgbd"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_cyog5"]
+[ext_resource type="PackedScene" uid="uid://oueh44jajup5" path="res://assets/gltf/car_police.gltf" id="2_ewaxw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgq3t"]
+size = Vector3(0.393845, 0.406593, 0.942276)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_cyog5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0293177, 0.152048, -0.0037424)
+shape = SubResource("BoxShape3D_dgq3t")
+
+[node name="visuals" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="car_police" parent="visuals" instance=ExtResource("2_ewaxw")]
+
+[node name="camera_mount" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.15905, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
+transform = Transform3D(-1, 1.87728e-08, -8.53834e-08, 0, 0.976672, 0.214735, 8.74228e-08, 0.214735, -0.976672, 0, 0.445639, -1.38726)
