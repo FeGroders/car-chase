@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brk7jnyygfyua"]
+[gd_scene load_steps=10 format=3 uid="uid://brk7jnyygfyua"]
 
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="1_uagyv"]
 [ext_resource type="ArrayMesh" uid="uid://b633232svgjbg" path="res://assets/obj/car_police.obj" id="2_5bal8"]
@@ -6,58 +6,102 @@
 [ext_resource type="ArrayMesh" uid="uid://clxninexqlp3i" path="res://assets/obj/car_police_wheel_front_right.obj" id="4_wnlpd"]
 [ext_resource type="ArrayMesh" uid="uid://basxli8hvmgms" path="res://assets/obj/car_police_wheel_rear_right.obj" id="5_vox76"]
 [ext_resource type="ArrayMesh" uid="uid://ctaapo0jfleth" path="res://assets/obj/car_police_wheel_rear_left.obj" id="6_rd8t3"]
+[ext_resource type="Script" path="res://scripts/camera_mount.gd" id="7_h0eyk"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uyvb6"]
-size = Vector3(0.414968, 0.409959, 1)
+[sub_resource type="GDScript" id="GDScript_xr4m4"]
+script/source = "extends Camera3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rphxq"]
+points = PackedVector3Array(-0.131479, 0.3077, -0.222998, 0.214823, 0.0370452, 0.473144, 0.203823, -0.0130489, 0.448868, 0.214823, 0.0370452, -0.479744, -0.204079, -0.0114408, -0.45135, -0.216944, 0.0370058, 0.473144, 0.110558, 0.364556, -0.0329612, 0.199904, 0.156158, -0.464821, -0.202025, 0.156158, -0.464821, -0.202025, 0.111495, 0.443297, 0.203518, -0.0127861, -0.454795, -0.112679, 0.364556, -0.0329612, -0.204063, -0.0114275, 0.444716, 0.0808045, 0.141244, 0.428466, 0.1034, -0.0245541, -0.32375, 0.214823, 0.12637, 0.264677, -0.216944, 0.126409, 0.264677, 0.185027, 0.0966211, 0.473144, -0.216944, 0.0370058, -0.479744, 0.129358, 0.3077, -0.222998, -0.1034, -0.0207342, 0.324326, 0.1034, -0.0245541, 0.331117, -0.0829257, 0.141244, 0.428466, 0.199904, 0.111456, 0.443297, -0.1034, -0.0207342, -0.317243, -0.187106, 0.0966211, 0.473144, 0.129358, 0.3077, 0.0790221, -0.131479, 0.3077, 0.0790221, -0.216944, 0.111495, 0.309355, 0.214823, 0.111456, 0.309355)
 
 [node name="vehicle" type="VehicleBody3D"]
+can_sleep = false
 script = ExtResource("1_uagyv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146384, 0)
-shape = SubResource("BoxShape3D_uyvb6")
+[node name="camera_mount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0200833, 0)
+script = ExtResource("7_h0eyk")
+smooth_speed = 1.5
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
+transform = Transform3D(-1, 1.87728e-08, -8.53834e-08, 0, 0.976672, 0.214735, 8.74228e-08, 0.214735, -0.976672, 0, 0.445639, -1.38726)
+script = SubResource("GDScript_xr4m4")
 
 [node name="car_body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138967, 0)
 mesh = ExtResource("2_5bal8")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138967, 0)
+shape = SubResource("ConvexPolygonShape3D_rphxq")
+
 [node name="front_left_wheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, 0.171127, 0.010912, 0.248761)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171, -0.137967, 0.243)
 use_as_steering = true
+wheel_radius = 0.072
+wheel_rest_length = 0.08
+suspension_travel = 0.08
+suspension_stiffness = 10.0
+damping_compression = 1.5
+damping_relaxation = 2.0
 
 [node name="CarPoliceWheelFrontLeft" type="MeshInstance3D" parent="front_left_wheel"]
-transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, -1.10274, -0.0703166, -1.603)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178, -0.011, -0.244)
 mesh = ExtResource("3_5r5hi")
 skeleton = NodePath("../..")
 
 [node name="front_right_wheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, -0.177312, 0.010912, 0.248761)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, -0.137703, 0.243)
 use_as_steering = true
+wheel_radius = 0.072
+wheel_rest_length = 0.08
+suspension_travel = 0.08
+suspension_stiffness = 10.0
+damping_compression = 1.5
+damping_relaxation = 2.0
 
 [node name="CarPoliceWheelFrontRight" type="MeshInstance3D" parent="front_right_wheel"]
-transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, 1.14384, -0.0703166, -1.58462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.178, -0.011, -0.244)
 mesh = ExtResource("4_wnlpd")
 skeleton = NodePath("../..")
 
-[node name="rear_right_wheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, -0.177312, 0.010912, -0.257636)
-use_as_traction = true
-
-[node name="CarPoliceWheelRearRight" type="MeshInstance3D" parent="rear_right_wheel"]
-transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, 1.14384, -0.0703166, 1.67858)
-mesh = ExtResource("5_vox76")
-skeleton = NodePath("../..")
-
 [node name="rear_left_wheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.155184, 0, 0, 0, 0.155184, 0, 0, 0, 0.155184, 0.171127, 0.010912, -0.255458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171, -0.137703, -0.256)
 use_as_traction = true
+wheel_radius = 0.072
+wheel_rest_length = 0.08
+suspension_travel = 0.08
+suspension_stiffness = 10.0
+damping_compression = 1.5
+damping_relaxation = 2.0
 
 [node name="CarPoliceWheelRearLeft" type="MeshInstance3D" parent="rear_left_wheel"]
-transform = Transform3D(6.44395, 0, 0, 0, 6.44395, 0, 0, 0, 6.44395, -1.10148, -0.0703166, 1.66454)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178, -0.011, 0.258)
 mesh = ExtResource("6_rd8t3")
 skeleton = NodePath("../..")
 
-[node name="camera_mount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15905, 0)
+[node name="rear_right_wheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, -0.137703, -0.256)
+use_as_traction = true
+wheel_radius = 0.072
+wheel_rest_length = 0.08
+suspension_travel = 0.08
+suspension_stiffness = 10.0
+damping_compression = 1.5
+damping_relaxation = 2.0
 
-[node name="Camera3D" type="Camera3D" parent="camera_mount"]
-transform = Transform3D(-1, 1.87728e-08, -8.53834e-08, 0, 0.976672, 0.214735, 8.74228e-08, 0.214735, -0.976672, 0, 0.445639, -1.38726)
+[node name="CarPoliceWheelRearRight" type="MeshInstance3D" parent="rear_right_wheel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.177967, -0.0108572, 0.257523)
+mesh = ExtResource("5_vox76")
+skeleton = NodePath("../..")

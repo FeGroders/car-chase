@@ -1,8 +1,8 @@
 extends VehicleBody3D
 @onready var camera_mount = $camera_mount
 
-var max_rpm = 50
-var max_torque = 10
+var max_rpm = 500
+var max_torque = 200
 
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -13,7 +13,6 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		camera_mount.rotate_y(deg_to_rad(event.relative.x*sens_horizontal))
-		#camera_mount.rotate_x(deg_to_rad(event.relative.y*sens_vertical))
 
 func _physics_process(delta):
 	steering = lerp(steering, Input.get_axis("right", "left") * 0.5, 5 * delta)
