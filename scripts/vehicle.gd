@@ -11,9 +11,6 @@ var max_torque = 200
 
 func _ready():
 	pass
-	
-func _input(event):
-	pass
 
 func _physics_process(delta):
 	steering = lerp(steering, Input.get_axis("right", "left") * 0.5, 5 * delta)
