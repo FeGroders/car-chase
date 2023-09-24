@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://hf5m0pd7ctxg"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_11rah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_peh2b"]
+size = Vector3(0.0644545, 0.0627762, 0.0512391)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pop2l"]
+albedo_color = Color(0.964706, 1, 0.278431, 1)
+metallic = 1.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_loo1e"]
+material = SubResource("StandardMaterial3D_pop2l")
+
+[sub_resource type="Animation" id="Animation_purfl"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lui8v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.00036566, -1.86265e-09, 8.37296e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_s8c7n"]
+resource_name = "collect"
+length = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.00036566, -1.86265e-09, 8.37296e-05), Vector3(0, 0.05, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80a2f"]
+_data = {
+"RESET": SubResource("Animation_lui8v"),
+"collect": SubResource("Animation_s8c7n"),
+"default": SubResource("Animation_purfl")
+}
+
+[node name="coin" type="Area3D"]
+transform = Transform3D(2.02698, 0, 0, 0, 2.02698, 0, 0, 0, 2.02698, 0, 0, 0)
+collision_layer = 8
+script = ExtResource("1_11rah")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_peh2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0329775, 0, 0, 0, -1.08571e-09, -0.0329775, 0, 0.0248382, -1.44149e-09, -0.00036566, -1.86265e-09, 8.37296e-05)
+mesh = SubResource("TorusMesh_loo1e")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+speed_scale = 0.2
+libraries = {
+"": SubResource("AnimationLibrary_80a2f")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

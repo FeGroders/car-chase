@@ -4,6 +4,8 @@ extends VehicleBody3D
 var max_rpm = 500
 var max_torque = 200
 
+@export var score = 0
+
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 

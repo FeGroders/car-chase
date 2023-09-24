@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://hf5m0pd7ctxg"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_11rah"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pop2l"]
+albedo_color = Color(0.964706, 1, 0.278431, 1)
+metallic = 1.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_loo1e"]
+material = SubResource("StandardMaterial3D_pop2l")
+
+[sub_resource type="GDScript" id="GDScript_2vrdi"]
+script/source = "extends MeshInstance3D
+
+Global.score++;
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_peh2b"]
+size = Vector3(0.0644545, 0.0627762, 0.0875915)
+
+[node name="coin" type="Area3D"]
+transform = Transform3D(2.02698, 0, 0, 0, 2.02698, 0, 0, 0, 2.02698, 0, 0, 0)
+script = ExtResource("1_11rah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0329775, 0, 0, 0, -1.08571e-09, -0.0329775, 0, 0.0248382, -1.44149e-09, -0.00036566, -1.86265e-09, 8.37296e-05)
+mesh = SubResource("TorusMesh_loo1e")
+script = SubResource("GDScript_2vrdi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_peh2b")

@@ -1,8 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3qno7dr7p86c"]
+[gd_scene load_steps=9 format=3 uid="uid://d3qno7dr7p86c"]
 
 [ext_resource type="MeshLibrary" uid="uid://nc52sctx7o4v" path="res://meshlibrary1.tres" id="1_4j0pq"]
 [ext_resource type="Texture2D" uid="uid://crc8ybff61hqy" path="res://assets/Epic_BlueSunset_EquiRect_flat.png" id="1_jhh4s"]
 [ext_resource type="PackedScene" uid="uid://brk7jnyygfyua" path="res://scenes/vehicle.tscn" id="2_1idne"]
+[ext_resource type="PackedScene" uid="uid://hf5m0pd7ctxg" path="res://scenes/coin.tscn" id="4_4owyh"]
+
+[sub_resource type="GDScript" id="GDScript_dlaly"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_a04x5"]
 panorama = ExtResource("1_jhh4s")
@@ -19,6 +34,7 @@ tonemap_exposure = 2.5
 tonemap_white = 4.0
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_dlaly")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_47rbp")
@@ -28,6 +44,11 @@ transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 
 light_color = Color(0.953125, 0.921875, 0.863281, 1)
 shadow_enabled = true
 
+[node name="coins" type="Node3D" parent="."]
+
+[node name="coin" parent="." instance=ExtResource("4_4owyh")]
+transform = Transform3D(2.02698, 0, 0, 0, 2.02698, 0, 0, 0, 2.02698, 5.05993, 1.18759, 11.9357)
+
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_4j0pq")
 data = {
@@ -35,5 +56,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="vehicle" parent="." instance=ExtResource("2_1idne")]
+[node name="player" type="Node3D" parent="."]
+
+[node name="vehicle" parent="player" instance=ExtResource("2_1idne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01842, 1.32514, 16.4066)
