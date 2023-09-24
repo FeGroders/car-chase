@@ -10,11 +10,10 @@ var max_torque = 200
 @export var sens_vertical = 0.5
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 	
 func _input(event):
-	if event is InputEventMouseMotion:
-		camera_mount.rotate_y(deg_to_rad(event.relative.x*sens_horizontal))
+	pass
 
 func _physics_process(delta):
 	steering = lerp(steering, Input.get_axis("right", "left") * 0.5, 5 * delta)
