@@ -1,13 +1,13 @@
 extends Control
 
 @onready var coins_counter = $container/coins_container/coins_counter as Label
-@onready var timer_counter = $container/HBoxContainer/timer_counter as Label
+@onready var timer_counter = $container/timer_container/timer_counter as Label
 @onready var clock_timer = $clock_timer
 
 var minutes = 0
 var seconds = 0
-@export_range(0,5) var default_minutes := 2
-@export_range(0,59) var default_seconds := 0
+@export_range(0,5) var default_minutes := 0
+@export_range(0,59) var default_seconds := 30
 
 signal time_is_up()
 
